@@ -7,17 +7,30 @@ import {
 
 const initialStore = () => ({
   teams: [],
-  leagues: [],
+  leagues: {
+    searchCompetition: '',
+    collection: [],
+  },
 });
 
 const globalStore = (store = initialStore(), { type, data } = {}) => {
   switch(type) {
     case GET_LEAGUES:
+      return {
+        ...store,
+        leagues: {
+          ...store.leagues,
+          collection: data
+        } 
+      };
     case SEARCH_LEAGUE:
       return {
         ...store,
-        leagues: data
-      };
+        leagues: {
+          ...store.leagues,
+          searchCompetition: data
+        }
+      }
 
     case GET_TEAMS: 
       return {

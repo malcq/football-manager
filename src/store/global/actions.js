@@ -12,7 +12,7 @@ const getLeagues = (data) => ({
 
 export const getAllLeagues = () => async (dispatch) => {
   try {
-    let { data: { competitions } } = await axiosWrapper({
+    const { data: { competitions } } = await axiosWrapper({
     method: 'GET',
     url: `${serverApi}/competitions`
   });
