@@ -3,3 +3,8 @@ export const SEARCH_LEAGUE = 'SEARCH_LEAGUE';
 export const CLEAR_LEAGUE = 'CLEAR_LEAGUE';
 
 export const GET_TEAMS = 'GET_TEAMS';
+export const SEARCH_TEAM = 'SEARCH_TEAM';
+export const CLEAR_TEAM = 'CLEAR_TEAM';
+
+export const GET_MATCHES_BY_LEAGUE = 'GET_MATCHES_BY_LEAGUE';
+export const GET_MATCHES_BY_TEAM = 'GET_MATCHES_BY_TEAM';

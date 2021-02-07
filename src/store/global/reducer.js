@@ -1,16 +1,29 @@
 import {
   GET_LEAGUES,
+  SEARCH_LEAGUE,
   GET_TEAMS,
-  SEARCH_LEAGUE
+  SEARCH_TEAM,
+  GET_MATCHES_BY_LEAGUE
 } from './actionNames.js';
 
 
 const initialStore = () => ({
-  teams: [],
   leagues: {
     searchCompetition: '',
     collection: [],
   },
+  teams: {
+    searchTeam: '',
+    collection: [],
+  },
+  matches: {
+    byTeam: {
+      collection: []
+    },
+    byLeague: {
+      collection: []
+    }  
+  }
 });
 
 const globalStore = (store = initialStore(), { type, data } = {}) => {
@@ -35,9 +48,30 @@ const globalStore = (store = initialStore(), { type, data } = {}) => {
     case GET_TEAMS: 
       return {
         ...store,
-        teams: data
+        teams: {
+          ...store.teams,
+          collection: data
+        }
       };
-
+    case SEARCH_TEAM:
+      return {
+        ...store,
+        teams: {
+          ...store.teams,
+          searchTeam: data
+        }
+      }
+      case GET_MATCHES_BY_LEAGUE:
+        return {
+          ...store,
+          matches: {
+            ...store.matches,
+            byLeague: {
+              ...store.matches.byLeague,
+              collection: data
+            }
+          }
+        }
     default:
       return store;
   }

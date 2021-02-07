@@ -1,12 +1,17 @@
-import axiosWrapper from '../../utils/axios';
-import config from '../../config';
-import { GET_LEAGUES, SEARCH_LEAGUE } from './actionNames';
+import axiosWrapper from '../../../utils/axios';
+import config from '../../../config';
+import { GET_LEAGUES, SEARCH_LEAGUE} from '../actionNames';
 
 const { serverAddress, availableCompetitions } = config;
 const serverApi = `${serverAddress}/v2`;
 
 const getLeagues = (data) => ({
   type: GET_LEAGUES,
+  data
+});
+
+export const searchLeague = (data) => ({
+  type: SEARCH_LEAGUE,
   data
 });
 
@@ -23,8 +28,3 @@ export const getAllLeagues = () => async (dispatch) => {
     throw err;
   }
 }
-
-export const searchLeague = (data) => ({
-  type: SEARCH_LEAGUE,
-  data
-});
