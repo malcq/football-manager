@@ -3,7 +3,8 @@ import {
   SEARCH_LEAGUE,
   GET_TEAMS,
   SEARCH_TEAM,
-  GET_MATCHES_BY_LEAGUE
+  LEAGUE_GET_MATCHES,
+  LEAGUE_FILTER_DATE_MATCHES
 } from './actionNames.js';
 
 
@@ -14,6 +15,7 @@ const initialStore = () => ({
   },
   teams: {
     searchTeam: '',
+    season: {},
     collection: [],
   },
   matches: {
@@ -61,7 +63,7 @@ const globalStore = (store = initialStore(), { type, data } = {}) => {
           searchTeam: data
         }
       }
-      case GET_MATCHES_BY_LEAGUE:
+      case LEAGUE_GET_MATCHES:
         return {
           ...store,
           matches: {

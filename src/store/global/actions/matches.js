@@ -1,21 +1,30 @@
 import axiosWrapper from '../../../utils/axios';
 import config from '../../../config';
-import { GET_MATCHES_BY_LEAGUE, SEARCH_TEAM } from '../actionNames';
+import { 
+  LEAGUE_GET_MATCHES,
+  LEAGUE_FILTER_DATE_MATCHES
+} from '../actionNames';
 
 
 const { serverAddress } = config;
 const serverApi = `${serverAddress}/v2`;
 
 export const getMatchesByLeague = (data) => ({
-  type: GET_MATCHES_BY_LEAGUE,
+  type: LEAGUE_GET_MATCHES,
   data
 });
 
-export const getAllMatchesByLeague = (id) => async (dispatch) => {
+export const filterDateMatches = (data) => ({
+  type: LEAGUE_FILTER_DATE_MATCHES,
+  data
+});
+
+export const getAllMatchesByLeague = (id, params = {}) => async (dispatch) => {
   try {
     const {data: { matches } } = await axiosWrapper({
     method: 'GET',
-    url: `${serverApi}/competitions/${id}/matches`
+    url: `${serverApi}/competitions/${id}/matches`,
+    params
   });
 
   dispatch(getMatchesByLeague(matches));
