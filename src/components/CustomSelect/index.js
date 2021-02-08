@@ -6,21 +6,22 @@ const startYear = 2010;
 const endYear = 2021;
 const years = config.setSeasons(startYear, endYear);
 
-const CustomSelect = ({ year = '', onSelect }) => {
+const CustomSelect = ({ year = '', onSeasonSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectVal, setSelectVal] = useState(year);
   const setOpen = () => setIsOpen(true);
   const setClose = (value) =>  {
-    onSelect(value);
+    onSeasonSelect(value);
     setSelectVal(value);
     setIsOpen(false);
   }
 
   const handleChange = ({target: { value }}) => {
-    if (!/^\d+$/.test(value) && value.length || value.length > 4) return;
+    const numbersPattern = !/^\d+$/;
+    if (numbersPattern.test(value) && value.length || value.length > 4) return;
     if (value.length === 4) {
       value = (value >= startYear && value <= endYear) ? value : endYear;
-      onSelect(value);
+      onSeasonSelect(value);
       setIsOpen(false);
     }
     setSelectVal(value);

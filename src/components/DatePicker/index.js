@@ -13,7 +13,7 @@ const formatDate = (day) => {
   return `${ye}-${mo}-${da}`;
 }
 
-const DatePicker = ({onSelect, disabledArea: [startDate, endDate]}) => {
+const DatePicker = ({onDateSelect, disabledArea: [startDate, endDate]}) => {
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
   const [enteredTo, setEnteredTo] = useState(null);
@@ -58,7 +58,7 @@ const DatePicker = ({onSelect, disabledArea: [startDate, endDate]}) => {
     } else {
       setTo(day);
       setEnteredTo(day);
-      onSelect(formatDate(from),formatDate(day))
+      onDateSelect(formatDate(from),formatDate(day))
       setIsOpen(false)
     }
   }

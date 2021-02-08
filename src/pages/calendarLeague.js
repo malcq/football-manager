@@ -4,13 +4,10 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import queryString from 'query-string';
 
 import { getAllMatchesByLeague } from '../store/global/actions/matches';
+import { getDates } from '../utils/helper';
 import DatePicker from '../components/DatePicker';
 import CustomSelect from '../components/CustomSelect';
 
-const getDates = (matches) => {
-  const dates = matches.map(({ season: { startDate, endDate } }) => [startDate, endDate]);
-  return [...new Set(...dates)];
-} 
 
 const CalendarLeaguePage = ({location, history}) => {
   const matchesByLeague = useSelector(state => state.global.matches.byLeague, shallowEqual);
@@ -29,12 +26,12 @@ const CalendarLeaguePage = ({location, history}) => {
 
   const seasonDates = useMemo(() => getDates(matchesByLeague.collection), [matchesByLeague.collection])
 
-  const onSelect = (dateFrom, dateTo) => {
+  const onDateSelect = (dateFrom, dateTo) => {
     const parsed = { ...queryString.parse(location.search), dateFrom, dateTo };
     updateUrl(parsed);
   }
 
-  const handleSelect = (season) => {
+  const seasonSelect = (season) => {
     const parsed = { ...queryString.parse(location.search), season };
     updateUrl(parsed);
   }
@@ -44,10 +41,11 @@ const CalendarLeaguePage = ({location, history}) => {
   return (
     <>
       <h1>Calendar League</h1>
-      <DatePicker onSelect={onSelect} disabledArea={seasonDates} />
+      <DatePicker onDateSelect={onDateSelect} disabledArea={seasonDates} />
       <h2>Season starts: {seasonDates[0]}</h2>
       <h2>Season ends: {seasonDates[1]}</h2>
-      <CustomSelect onSelect={handleSelect} />
+      <h3 onClick={updateUrl.bind(null, null)}>Reset filter</h3>
+      <CustomSelect onSeasonSelect={seasonSelect} />
       <ul>
       {
         matchesByLeague.collection.map(({ id, homeTeam, awayTeam }) => ( 
