@@ -1,43 +1,37 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
 import { getAllLeagues, searchLeague } from '../store/global/actions/leagues';
-import AutoCompleteInput from '../components/Autocomplete';  
+import { AutoCompleteInput, LeagueTable } from '../components';  
+import { filterBySearch } from '../utils';
+import { SPage } from '../styles';
 
-
-const filterCompetitions = (searchVal, collection) => {
- 
-  if (!searchVal) return collection;
-  return collection.filter(({ name }) => name === searchVal);
-}
 
 const LeaguesPage = () => {
   const leagues = useSelector(state => state.global.leagues, shallowEqual);
   const dispatch = useDispatch();
   const onSearchLeague = (searchStr) => dispatch(searchLeague(searchStr));
+
+  const competitions = useMemo(() =>
+    filterBySearch(
+      leagues.searchCompetition,
+      leagues.collection
+    ),
+  [leagues.searchCompetition,leagues.collection]);
+ 
   useEffect(() => dispatch(getAllLeagues()), [dispatch]);
-  
-  const competitions = filterCompetitions(
-    leagues.searchCompetition,
-    leagues.collection
-  );
+
+ 
   return (
-    <>
-    <h1>Leagues page</h1>
-    <AutoCompleteInput 
-      list={leagues.collection}
-      onSearch={onSearchLeague}
-      searchVal={leagues.searchCompetition}
-    />
-    <ul>
-      -----------
-      {competitions.map(
-        ({ id, name }) => <li key={id}><Link to={`/competitions/${id}`}>{name}</Link></li>
-      )}
-      -----------
-    </ul>
-    </>
+    <SPage>
+      <h1 className='page__title'>Leagues page</h1>
+      <AutoCompleteInput 
+        list={leagues.collection}
+        onSearch={onSearchLeague}
+        searchVal={leagues.searchCompetition}
+      />
+      <LeagueTable list={competitions} />
+    </SPage>
   )
 }
 

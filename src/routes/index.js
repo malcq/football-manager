@@ -16,7 +16,6 @@ const AppRoute = () => (
         <Route
           key={router.path}
           {...router}
-          component={router.component}
         />
       ))} 
     </Switch>

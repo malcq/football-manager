@@ -8,4 +8,3 @@ export const CLEAR_TEAM = 'CLEAR_TEAM';
 
 export const LEAGUE_GET_MATCHES = 'LEAGUE_GET_MATCHES';
 export const TEAM_GET_MATCHES = 'TEAM_GET_MATCHES';
-

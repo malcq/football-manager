@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import styled from 'styled-components';
 
+import { Colors, BoxShadows } from '../../styles/variables';
+import useOutsideClick from '../../hooks/outSideClick';
 import config from '../../config';
 
 const startYear = 2010;
@@ -9,6 +12,8 @@ const years = config.setSeasons(startYear, endYear);
 const CustomSelect = ({ year = '', onSeasonSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectVal, setSelectVal] = useState(year);
+  const ref = useRef();
+
   const setOpen = () => setIsOpen(true);
   const setClose = (value) =>  {
     onSeasonSelect(value);
@@ -17,8 +22,12 @@ const CustomSelect = ({ year = '', onSeasonSelect }) => {
   }
 
   const handleChange = ({target: { value }}) => {
-    const numbersPattern = !/^\d+$/;
-    if (numbersPattern.test(value) && value.length || value.length > 4) return;
+    if (
+      (!/^\d+$/.test(value) && value.length)
+    ||
+      (value.length > 4)
+    ) return;
+
     if (value.length === 4) {
       value = (value >= startYear && value <= endYear) ? value : endYear;
       onSeasonSelect(value);
@@ -27,8 +36,10 @@ const CustomSelect = ({ year = '', onSeasonSelect }) => {
     setSelectVal(value);
   }
 
+  useOutsideClick(ref, () => setIsOpen(false));
+
   return (
-    <form className='select' >
+    <SForm className='select' ref={ref} >
       <label htmlFor="">
         <input 
           type="text"
@@ -48,8 +59,27 @@ const CustomSelect = ({ year = '', onSeasonSelect }) => {
             {year}
           </li>)}
       </ul>)}
-    </form>
+    </SForm>
   )
 }
 
 export default CustomSelect;
+
+const SForm = styled.form`
+  position: relative;
+  .select-list {
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    background-color: ${Colors.white};
+    box-shadow: ${BoxShadows.main};
+    &__input {
+      padding: 5px 10px;
+      cursor: pointer;
+      :hover {
+        color: ${Colors.white};
+        background-color: ${Colors.blue};
+      }
+    }
+  }
+`;

@@ -4,10 +4,9 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import queryString from 'query-string';
 
 import { getAllMatchesByLeague } from '../store/global/actions/matches';
-import { getDates } from '../utils/helper';
-import DatePicker from '../components/DatePicker';
-import CustomSelect from '../components/CustomSelect';
-
+import { DatePicker, CustomSelect, ByLeagueTable } from '../components';
+import { getDates, updateUrl } from '../utils';
+import { SPage } from '../styles';
 
 const CalendarLeaguePage = ({location, history}) => {
   const matchesByLeague = useSelector(state => state.global.matches.byLeague, shallowEqual);
@@ -15,12 +14,8 @@ const CalendarLeaguePage = ({location, history}) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const updateUrl = (parsed) => {
-    const searchString = queryString.stringify(parsed);
-    history.push({
-      pathname: location.pathname,
-      search: searchString
-    })
+  const handleUrl = (parsed) => {
+    updateUrl(parsed, history, location);
     setDateFilter({ ...parsed })
   }
 
@@ -28,32 +23,34 @@ const CalendarLeaguePage = ({location, history}) => {
 
   const onDateSelect = (dateFrom, dateTo) => {
     const parsed = { ...queryString.parse(location.search), dateFrom, dateTo };
-    updateUrl(parsed);
+    handleUrl(parsed);
   }
 
   const seasonSelect = (season) => {
     const parsed = { ...queryString.parse(location.search), season };
-    updateUrl(parsed);
+    handleUrl(parsed);
   }
 
   useEffect(() => dispatch(getAllMatchesByLeague(id, dateFilter)),[id, dispatch, dateFilter]);
 
   return (
-    <>
-      <h1>Calendar League</h1>
-      <DatePicker onDateSelect={onDateSelect} disabledArea={seasonDates} />
+    <SPage>
+      <h1 className='page__title'>Calendar League</h1>
       <h2>Season starts: {seasonDates[0]}</h2>
       <h2>Season ends: {seasonDates[1]}</h2>
-      <h3 onClick={updateUrl.bind(null, null)}>Reset filter</h3>
-      <CustomSelect onSeasonSelect={seasonSelect} />
-      <ul>
-      {
-        matchesByLeague.collection.map(({ id, homeTeam, awayTeam }) => ( 
-          <li key={id}>{homeTeam.name} vs {awayTeam.name}</li>))
-      }
-      -----------
-      </ul>
-    </>
+      <div className='page__panel'>
+        <CustomSelect onSeasonSelect={seasonSelect} />
+        <DatePicker onDateSelect={onDateSelect} disabledArea={seasonDates} />
+      </div>
+      <div
+        className='page__reset'   
+      >
+        <span onClick={handleUrl.bind(null, null)}>
+          Reset filter
+        </span>
+      </div>
+      <ByLeagueTable list={matchesByLeague.collection} />
+    </SPage>
   )
 }
 

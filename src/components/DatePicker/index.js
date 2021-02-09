@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Helmet from 'react-helmet';
 import DayPicker, { DateUtils } from 'react-day-picker';
+import styled from 'styled-components';
+
+import useOutsideClick from '../../hooks/outSideClick';
 
 import 'react-day-picker/lib/style.css';
 
@@ -18,11 +21,13 @@ const DatePicker = ({onDateSelect, disabledArea: [startDate, endDate]}) => {
   const [to, setTo] = useState(null);
   const [enteredTo, setEnteredTo] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const ref = useRef();
   const disabledDays = { 
     before: new Date(startDate),
     after: new Date(endDate)
   };
+
+  const setOpen = () => setIsOpen(true);
 
   const isSelectingFirstDay = (from, to, day) => {
     const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
@@ -69,14 +74,18 @@ const DatePicker = ({onDateSelect, disabledArea: [startDate, endDate]}) => {
     }
   }
 
+  useOutsideClick(ref, () => setIsOpen(false));
+
   const modifiers = { start: from, end: enteredTo };
   const selectedDays = [from, { from, to: enteredTo }];
   return (
-    <div>
-      {!isOpen 
-      ? (
-        <div onClick={toggleOpen}>Calendar</div>)
-      :
+    <SCalendar
+      ref={ref}
+      className='calendar__layout'
+      onClick={setOpen}
+    >
+      {isOpen 
+      &&
       (<>
         <DayPicker
           className="Range"
@@ -88,35 +97,39 @@ const DatePicker = ({onDateSelect, disabledArea: [startDate, endDate]}) => {
           onDayClick={handleDayClick}
           onDayMouseEnter={handleDayMouseEnter}
         />
-        <div>
-          {!from && !to && 'Please select the first day.'}
-          {from && !to && 'Please select the last day.'}
-          {from &&
-            to &&
-            `Selected from ${from.toLocaleDateString()} to
-                ${to.toLocaleDateString()}`}{' '}
-          {from && to && (
-            <button className="link" onClick={handleResetClick}>
-              Reset
-            </button>
-          )}
-          <div onClick={toggleOpen}>Close calndar</div>
-        </div>
         <Helmet>
           <style>
             {`.Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
               background-color: #f0f8ff !important;
               color: #4a90e2;
             }
+            .Range {
+              position: absolute;
+              color: black;
+              background: #ffffff;
+              border-radius: 5px;
+              box-shadow: 4px 4px 8px 0px rgb(34, 60, 80, 0.2);
+              right: 5px;
+              top: 30px;
+            }
             .Range .DayPicker-Day {
               border-radius: 0 !important;
+              outline: none !important;
             }`}
           </style>
         </Helmet>
         </>
       )}
-    </div>
+    </SCalendar>
   );
 }
 
 export default DatePicker;
+
+const SCalendar = styled.div`
+  position: relative;
+  padding: 15px;
+  background: url(/img/calendar.png) no-repeat 100% 50%;
+  background-size: contain;
+  cursor: pointer;
+`;
