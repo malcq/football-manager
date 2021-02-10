@@ -1,0 +1,39 @@
+{
+  "files": {
+    "static/css/0.0440f8c5.chunk.css": "/football-manager/static/css/0.0440f8c5.chunk.css",
+    "static/js/0.44849ede.chunk.js": "/football-manager/static/js/0.44849ede.chunk.js",
+    "static/js/0.44849ede.chunk.js.map": "/football-manager/static/js/0.44849ede.chunk.js.map",
+    "static/js/1.49538a8b.chunk.js": "/football-manager/static/js/1.49538a8b.chunk.js",
+    "static/js/1.49538a8b.chunk.js.map": "/football-manager/static/js/1.49538a8b.chunk.js.map",
+    "main.css": "/football-manager/static/css/main.cdaa5ef0.chunk.css",
+    "main.js": "/football-manager/static/js/main.fce410e5.chunk.js",
+    "main.js.map": "/football-manager/static/js/main.fce410e5.chunk.js.map",
+    "runtime-main.js": "/football-manager/static/js/runtime-main.758ab59c.js",
+    "runtime-main.js.map": "/football-manager/static/js/runtime-main.758ab59c.js.map",
+    "static/css/4.ffda3d49.chunk.css": "/football-manager/static/css/4.ffda3d49.chunk.css",
+    "static/js/4.3d063376.chunk.js": "/football-manager/static/js/4.3d063376.chunk.js",
+    "static/js/4.3d063376.chunk.js.map": "/football-manager/static/js/4.3d063376.chunk.js.map",
+    "static/js/5.375bf0a0.chunk.js": "/football-manager/static/js/5.375bf0a0.chunk.js",
+    "static/js/5.375bf0a0.chunk.js.map": "/football-manager/static/js/5.375bf0a0.chunk.js.map",
+    "static/js/6.45d2918d.chunk.js": "/football-manager/static/js/6.45d2918d.chunk.js",
+    "static/js/6.45d2918d.chunk.js.map": "/football-manager/static/js/6.45d2918d.chunk.js.map",
+    "static/js/7.bb370870.chunk.js": "/football-manager/static/js/7.bb370870.chunk.js",
+    "static/js/7.bb370870.chunk.js.map": "/football-manager/static/js/7.bb370870.chunk.js.map",
+    "static/js/8.541a9120.chunk.js": "/football-manager/static/js/8.541a9120.chunk.js",
+    "static/js/8.541a9120.chunk.js.map": "/football-manager/static/js/8.541a9120.chunk.js.map",
+    "static/js/9.509632ba.chunk.js": "/football-manager/static/js/9.509632ba.chunk.js",
+    "static/js/9.509632ba.chunk.js.map": "/football-manager/static/js/9.509632ba.chunk.js.map",
+    "index.html": "/football-manager/index.html",
+    "static/css/0.0440f8c5.chunk.css.map": "/football-manager/static/css/0.0440f8c5.chunk.css.map",
+    "static/css/4.ffda3d49.chunk.css.map": "/football-manager/static/css/4.ffda3d49.chunk.css.map",
+    "static/css/main.cdaa5ef0.chunk.css.map": "/football-manager/static/css/main.cdaa5ef0.chunk.css.map",
+    "static/js/4.3d063376.chunk.js.LICENSE.txt": "/football-manager/static/js/4.3d063376.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.758ab59c.js",
+    "static/css/4.ffda3d49.chunk.css",
+    "static/js/4.3d063376.chunk.js",
+    "static/css/main.cdaa5ef0.chunk.css",
+    "static/js/main.fce410e5.chunk.js"
+  ]
+}
