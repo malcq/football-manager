@@ -1,3 +1,5 @@
+import Notify from '../../../components/Notify';
+
 import axiosWrapper from '../../../utils/axios';
 import config from '../../../config';
 import { 
@@ -29,7 +31,7 @@ export const getAllMatchesByLeague = (id, params = {}) => async (dispatch) => {
 
   dispatch(getMatchesByLeague(matches));
   } catch (err) {
-    console.log('all matches by league service err');
+    Notify(err.response.data.message)
     throw err;
   }
 }
@@ -43,7 +45,7 @@ export const getAllMatchesByTeam = (id, params = {}) => async (dispatch) => {
   });
   dispatch(getMatchesByTeam(matches));
   } catch (err) {
-    console.log('all matches by team service err');
+    Notify(err.response.data.message)
     throw err;
   }
 }

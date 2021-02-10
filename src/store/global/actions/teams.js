@@ -1,3 +1,4 @@
+import Notify from '../../../components/Notify';
 import axiosWrapper from '../../../utils/axios';
 import config from '../../../config';
 import { GET_TEAMS, SEARCH_TEAM } from '../actionNames';
@@ -23,7 +24,7 @@ export const getAllTeams = (id) => async (dispatch) => {
   });
   dispatch(getTeams(teams));
   } catch (err) {
-    console.log('all competitions service err');
+    Notify(err.response.data.message)
     throw err;
   }
 }

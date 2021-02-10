@@ -7,7 +7,7 @@ import { Colors, BoxShadows } from '../../styles/variables';
 const NavBarMenu = () => (
   <SHeader>
     <nav>
-      <Link to="/">Leagues</Link>
+      <Link to="/">Home</Link>
     </nav>
   </SHeader>
 )

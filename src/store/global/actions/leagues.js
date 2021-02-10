@@ -1,6 +1,8 @@
+import Notify from '../../../components/Notify';
 import axiosWrapper from '../../../utils/axios';
 import config from '../../../config';
 import { GET_LEAGUES, SEARCH_LEAGUE} from '../actionNames';
+
 
 const { serverAddress, availableCompetitions } = config;
 const serverApi = `${serverAddress}/v2`;
@@ -25,6 +27,7 @@ export const getAllLeagues = () => async (dispatch) => {
   dispatch(getLeagues(competitions.filter(({ id }) => availableCompetitions.includes(id))));
   } catch (err) {
     console.log('all competitions service err');
+    Notify(err.response.data.message)
     throw err;
   }
 }

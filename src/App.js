@@ -1,13 +1,16 @@
+import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import AppRoute from './routes';
 import Header from './components/Header';
-
 
 const App = () => (
   <SApp>
     <Header />
     <AppRoute />
+    <ToastContainer />
   </SApp>
 );
 
