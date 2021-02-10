@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import { Router as HistoryProvider } from 'react-router';
 import { Provider } from 'react-redux';
 
@@ -11,7 +11,7 @@ import App from './App';
 import './index.css';
 
 
-export const history = createBrowserHistory();
+export const history = createHashHistory();
 
 ReactDOM.render(
   <Provider store={store}>
