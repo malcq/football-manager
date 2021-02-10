@@ -1,9 +1,19 @@
 import axios from './axios';
-import { getDates, updateUrl, filterBySearch } from './helper';
+import { 
+  filterBySearch,
+  getDates,
+  getCountPages,
+  paginate,
+  renderPages,
+  updateUrl
+} from './helper';
 
 export {
   axios,
   filterBySearch,
   getDates,
+  getCountPages,
+  paginate,
+  renderPages,
   updateUrl
 }

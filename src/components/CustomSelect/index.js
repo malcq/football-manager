@@ -7,7 +7,7 @@ import config from '../../config';
 
 const startYear = 2010;
 const endYear = 2021;
-const years = config.setSeasons(startYear, endYear);
+const years = config.rangeNumbs(startYear, endYear);
 
 const CustomSelect = ({ year = '', onSeasonSelect }) => {
   const [isOpen, setIsOpen] = useState(false);

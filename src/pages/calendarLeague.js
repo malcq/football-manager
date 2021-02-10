@@ -4,7 +4,7 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import queryString from 'query-string';
 
 import { getAllMatchesByLeague } from '../store/global/actions/matches';
-import { DatePicker, CustomSelect, ByLeagueTable } from '../components';
+import { DatePicker, CustomSelect, Table } from '../components';
 import { getDates, updateUrl } from '../utils';
 import { SPage } from '../styles';
 
@@ -49,7 +49,7 @@ const CalendarLeaguePage = ({location, history}) => {
           Reset filter
         </span>
       </div>
-      <ByLeagueTable list={matchesByLeague.collection} />
+      <Table list={matchesByLeague.collection} />
     </SPage>
   )
 }

@@ -97,12 +97,12 @@ const SAutoComplete = styled.form`
         background-color: ${grey};
         box-shadow: ${BoxShadows.main};
         cursor: pointer;
-        &:active {
+        :active {
           transform: scale(.8);      
         }
       }
       &__input {
-        width: 180px;
+        width: 213px;
         @media only screen and (max-width: 760px) {
           width: 95%;
         }
@@ -127,7 +127,7 @@ const SAutoComplete = styled.form`
     &__list {
       display: flex;
       flex-direction: column;
-      width: 185px;
+      width: 220px;
       position: absolute;
       top: 25px;
       right: 30px;
@@ -138,7 +138,6 @@ const SAutoComplete = styled.form`
       @media only screen and (max-width: 760px) {
         width: 90%;
         right: 0;
-        left: 0;
       }
     }
   }

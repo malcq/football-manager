@@ -14,8 +14,8 @@ export default ListItem;
 const { white, rainyDark } = Colors;
 
 const SListItem = styled.li`
-  padding: 5px;
-  text-align: left;
+  padding: 0 15px;
+  line-height: 30px;
   &:hover {
     color: ${white};
     background-color: ${rainyDark};
