@@ -110,14 +110,14 @@ const SAutoComplete = styled.form`
 
       &__search-layout {
         padding: 5px;
-        background-image: url(../img/search.png);
+        background-image: url(./img/search.png);
       }
 
       &__btn {
         margin-left: 10px;
         width: 20px;
         height: 20px;
-        background: ${white} url(../img/search.png) no-repeat 50% 50%;
+        background: ${white} url(./img/search.png) no-repeat 50% 50%;
         background-size: contain;
         overflow: hidden;
         border: none;

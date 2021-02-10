@@ -36,7 +36,7 @@ const SLink = styled(Link)`
 `;
 
 const SAvatar = styled.td`
-  background: url(${props => props.flag ? props.flag : '../img/unknown-flag.png'}) no-repeat 50% 50%;
+  background: url(${props => props.flag ? props.flag : './img/unknown-flag.png'}) no-repeat 50% 50%;
   background-size: contain;
 `;
 

@@ -129,7 +129,7 @@ export default DatePicker;
 const SCalendar = styled.div`
   position: relative;
   padding: 15px;
-  background: url(/img/calendar.png) no-repeat 100% 50%;
+  background: url(./img/calendar.png) no-repeat 100% 50%;
   background-size: contain;
   cursor: pointer;
 `;

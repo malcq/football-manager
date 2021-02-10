@@ -16,7 +16,7 @@ const App = () => (
 
 const SApp = styled.div`
   padding: 5px;
-  background-image: url('/img/bg-main.jpg');
+  background-image: url('./img/bg-main.jpg');
   background-size: contain;
   background-position: top;
   height: calc(100vh - 10px);
