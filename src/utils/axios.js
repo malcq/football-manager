@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import config from '../config';
 
@@ -10,7 +11,6 @@ const getDefaultHeaders = () => ({
 const axiosWrapper = async ({
   method = 'GET',
   url = '',
-  data = {},
   params = {},
   headers = {}
 }) => {

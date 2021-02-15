@@ -37,7 +37,7 @@ export const getCountPages = (array, maxPerPage) => {
   return cntPages;
 }
 
-export const renderPages = (pages, activePage) => {
+export const renderPages = (pages) => {
   if (pages === 1) return [];
   return config.rangeNumbs(1, pages)
 }

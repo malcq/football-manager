@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Notify from '../../../components/Notify';
 import axiosWrapper from '../../../utils/axios';
 import config from '../../../config';
